@@ -9,6 +9,8 @@ package hrmanagement;
  *
  * @author Minhaz
  */
+import java.sql.*;
+import javax.swing.JOptionPane;
 public class login extends javax.swing.JFrame {
 
     /**
@@ -51,6 +53,11 @@ public class login extends javax.swing.JFrame {
         p.setText("password:");
 
         btn_submit.setText("submit");
+        btn_submit.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btn_submitActionPerformed(evt);
+            }
+        });
 
         btnReset.setText("reset");
         btnReset.addActionListener(new java.awt.event.ActionListener() {
@@ -121,6 +128,38 @@ public class login extends javax.swing.JFrame {
         user.setText("");
         pass.setText("");
     }//GEN-LAST:event_btnResetActionPerformed
+
+    private void btn_submitActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_submitActionPerformed
+        // TODO add your handling code here:
+        try{
+            Class.forName("com.mysql.cj.jdbc.Driver");
+            Connection con=DriverManager.getConnection("jdbc:mysql://localhost;3306/mydb?useSSL=false","root","");
+            
+            String u=user.getText();
+            String p=pass.getText();
+            
+            Statement stm=con.createStatement();
+            String sql="select * from login where login_user='"+u+"' and login_password='"+p+"'";
+            ResultSet rs=stm.executeQuery(sql);
+            
+            if(rs.next()){
+                dispose();
+                menu m=new menu();
+                m.show();
+                
+            }
+            else{
+                JOptionPane.showMessageDialog(this,"wrong user name or password");
+                user.setText("");
+                pass.setText("");
+                
+            }
+            
+            
+        }catch(Exception e){
+            System.out.println(e.getMessage());
+        }
+    }//GEN-LAST:event_btn_submitActionPerformed
 
     /**
      * @param args the command line arguments
