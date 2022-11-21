@@ -53,6 +53,11 @@ public class login extends javax.swing.JFrame {
         btn_submit.setText("submit");
 
         btnReset.setText("reset");
+        btnReset.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnResetActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -110,6 +115,12 @@ public class login extends javax.swing.JFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void btnResetActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnResetActionPerformed
+        // TODO add your handling code here:
+        user.setText("");
+        pass.setText("");
+    }//GEN-LAST:event_btnResetActionPerformed
 
     /**
      * @param args the command line arguments
