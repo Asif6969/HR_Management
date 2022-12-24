@@ -365,17 +365,38 @@ public class signup extends javax.swing.JFrame {
     private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
         // TODO add your handling code here:
         if(newUser.getText().equals("")){
-            JOptionPane.showMessageDialog(null,"insert a username please!!");
-            
+            JOptionPane.showMessageDialog(null,"insert a username please");
+        }
+        else if(newPass.getText().equals("")){
+            JOptionPane.showMessageDialog(null,"insert your password");
+        }
+        else if(rePass.getText().equals("")){
+            JOptionPane.showMessageDialog(null,"retype your password please");
         }
         else if(refer.getText().equals("")){
-            JOptionPane.showMessageDialog(null,"insert the referred username please!!");
-        }
-        else if(newPass.getText() != rePass.getText()){
-            JOptionPane.showMessageDialog(null,"password do not match","Error",JOptionPane.ERROR_MESSAGE);
+            JOptionPane.showMessageDialog(null,"insert the referred username please");
         }
         else{
+            try{
+            Class.forName("com.mysql.cj.jdbc.Driver");
+            Connection con=DriverManager.getConnection("jdbc:mysql://localhost/hrmanagement","root","");
+           
+            String sql="insert into login(login_user,login_password,login_refer) values(?,?,?)";
+            PreparedStatement stm=con.prepareStatement(sql);
+            stm.setString(1,newUser.getText());
+            stm.setString(2,newPass.getText());
+            stm.setString(3,refer.getText());
+            stm.executeUpdate();
+            JOptionPane.showMessageDialog(null,"sign up successfully!");
+            con.close();
+            newUser.setText("");
+            rePass.setText("");
+            newPass.setText("");
+            refer.setText("");
             
+            }catch(Exception e){
+                JOptionPane.showMessageDialog(this,e);
+            }
         }
        
     }//GEN-LAST:event_jButton3ActionPerformed

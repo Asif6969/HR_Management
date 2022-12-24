@@ -207,7 +207,8 @@ public class login extends javax.swing.JFrame {
                 JOptionPane.showMessageDialog(null,"username,password not match","Error",JOptionPane.ERROR_MESSAGE);
                 user.setText("");
                 pass.setText("");
-            }   
+            }
+            con.close();
         }catch(Exception e){
             JOptionPane.showMessageDialog(this,e);
         }
