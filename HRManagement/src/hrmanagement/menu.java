@@ -56,6 +56,11 @@ public class menu extends javax.swing.JFrame {
         });
 
         jButton5.setText("all employee");
+        jButton5.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton5ActionPerformed(evt);
+            }
+        });
 
         jButton6.setText("overtime & bonus");
         jButton6.addActionListener(new java.awt.event.ActionListener() {
@@ -139,6 +144,12 @@ public class menu extends javax.swing.JFrame {
         employeeAdding ea=new employeeAdding();
         ea.setVisible(true);
     }//GEN-LAST:event_jButton4ActionPerformed
+
+    private void jButton5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton5ActionPerformed
+        // TODO add your handling code here:
+        allEmployee ae=new allEmployee();
+        ae.setVisible(true);
+    }//GEN-LAST:event_jButton5ActionPerformed
 
     /**
      * @param args the command line arguments
